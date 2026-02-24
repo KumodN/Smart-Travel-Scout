@@ -20,13 +20,29 @@ export default function ResultsList({ results }: ResultsListProps) {
 
   return (
     <div className="mt-12 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <div className="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-4">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-          Discovery Results
-        </h2>
-        <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold rounded-full uppercase tracking-wider">
-          {results.metadata.totalMatches} Matches
-        </span>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-4">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            Discovery Results
+          </h2>
+          <div className="flex gap-2">
+            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs font-bold rounded-full uppercase tracking-wider">
+              {results.metadata.method || "Search"}
+            </span>
+            <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold rounded-full uppercase tracking-wider">
+              {results.metadata.totalMatches} Matches
+            </span>
+          </div>
+        </div>
+
+        {results.metadata.warning && (
+          <div className="p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-900/30 rounded-2xl text-xs text-amber-700 dark:text-amber-400 font-medium flex items-center gap-2">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {results.metadata.warning}
+          </div>
+        )}
       </div>
 
       <div className="space-y-6">
