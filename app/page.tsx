@@ -36,21 +36,29 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-2">Smart Travel Scout</h1>
-      <p className="text-gray-600 mb-8">
-        Find your perfect Sri Lankan adventure
-      </p>
+    <main className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-2xl mx-auto text-center mb-12 animate-in fade-in slide-in-from-top-4 duration-1000">
+        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+          Smart Travel Scout
+        </h1>
+        <p className="text-lg text-gray-500 dark:text-gray-400 max-w-md mx-auto">
+          Your AI-powered guide to the best Sri Lankan experiences. Explore curated adventures.
+        </p>
+      </div>
 
-      <SearchForm onSearch={handleSearch} loading={loading} />
+      <div className="max-w-xl mx-auto">
+        <SearchForm onSearch={handleSearch} loading={loading} />
 
-      {error && (
-        <div className="mt-4 p-4 bg-red-50 text-red-700 rounded">{error}</div>
-      )}
+        {error && (
+          <div className="mt-6 p-4 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-2xl border border-red-100 dark:border-red-900/30 text-sm font-medium text-center">
+             {error}
+          </div>
+        )}
 
-      {loading && <LoadingSpinner />}
+        {loading && <LoadingSpinner />}
 
-      {results && !loading && <ResultsList results={results} />}
+        {results && !loading && <ResultsList results={results} />}
+      </div>
     </main>
   );
 }
